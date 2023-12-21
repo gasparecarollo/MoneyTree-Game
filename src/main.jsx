@@ -8,7 +8,7 @@ const sizes = {
   height: 500
 }
 
-const speedDown = 300;
+const speedDown = 150;
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -49,7 +49,7 @@ class GameScene extends Phaser.Scene {
     });
     this.textTime = this.add.text(10, 10, "Remaining Time: 00", {
       font: "25px Arial",
-      fill: "000000",
+      fill: "#000000",
     });
 
   }
