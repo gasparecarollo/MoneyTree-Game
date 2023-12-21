@@ -1,3 +1,12 @@
 :root {
-  font-family: Inter, system-ui, Avenir,
+  font-family: Inter, system-ui, Avenir;
+  --dkClr: #181818;
+  --liClr: whitesmoke;
+  --accClr: #0D0D35;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
