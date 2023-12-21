@@ -126,7 +126,7 @@ class GameScene extends Phaser.Scene {
         debug: true
       }
     },
-    // scene: [gameScene]
+    scene: [gameScene]
   }
 
   const game = new Phaser.Game(config)
