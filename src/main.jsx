@@ -10,6 +10,14 @@ const sizes = {
 
 const speedDown = 150;
 
+const gameStartDiv = document.querySelector("#gameStartDiv")
+const gameStartBtn = document.querySelector("#gameStartBtn")
+const gameEndDiv = document.querySelector("#gameEndDiv")
+const gameWinLoseSpan = document.querySelector("#gameWinLoseSpan")
+const gameEndScoreSpan = document.querySelector("gameEndScoreSpan")
+
+
+
 class GameScene extends Phaser.Scene {
   constructor() {
     super("scene-game");
@@ -26,6 +34,7 @@ class GameScene extends Phaser.Scene {
     this.bgMusic;
     this.emitter;
   }
+
 
   preload() {
     this.load.image("bg", "/public/vite.svg")
@@ -97,38 +106,42 @@ class GameScene extends Phaser.Scene {
     } else {
       this.player.setVelocity(0);
     }
-
-    getRandomX() {
-      return Math.floor(Math.random() * 480)
-    }
-    targetHit() {
-      this.coinMusic.play();
-      this.emitter.start();
-      this.target.setY(0);
-      this.target.setX(this.getRandomX());
-      this.points++;
-      this.textScore.setText(`Score: ${this.points}`)
-    }
-    gameOver() {
-      console.log("Game Over")
-    }
   }
 
-  const config = {
-    type: Phaser.WEBGL,
-    width: sizes.width,
-    height: sizes.height,
-    canvas: gameCanvas,
-    physics: {
-      default: "arcade",
-      arcade: {
-        gravity: { y: speedDown },
-        debug: true
-      }
-    },
-    scene: [gameScene]
+  getRandomX() {
+    return Math.floor(Math.random() * 480)
   }
+  targetHit() {
+    this.coinMusic.play();
+    this.emitter.start();
+    this.target.setY(0);
+    this.target.setX(this.getRandomX());
+    this.points++;
+    this.textScore.setText(`Score: ${this.points}`)
+  }
+  gameOver() {
+    console.log("Game Over")
+  }
+}
 
-  const game = new Phaser.Game(config)
+const config = {
+  type: Phaser.WEBGL,
+  width: sizes.width,
+  height: sizes.height,
+  canvas: gameCanvas,
+  physics: {
+    default: "arcade",
+    arcade: {
+      gravity: { y: speedDown },
+      debug: true
+    }
+  },
+  scene: [GameScene],
+}
 
+const game = new Phaser.Game(config)
 
+gameStartBtn.addEventListener("click", () => {
+  gameStartDiv.style.display = "none"
+  game.scene.resume("scene-game")
+})
