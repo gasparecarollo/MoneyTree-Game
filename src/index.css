@@ -10,3 +10,24 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--dkClr);
+  color: var(--liClr);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header,
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
