@@ -8,7 +8,7 @@ const sizes = {
   height: 500
 }
 
-const speedDown = 300;
+const speedDown = 500;
 
 const gameStartDiv = document.querySelector("#gameStartDiv")
 const gameStartBtn = document.querySelector("#gameStartBtn")
@@ -23,7 +23,7 @@ class GameScene extends Phaser.Scene {
     super("scene-game");
     this.player;
     this.cursor;
-    this.playerSpeed = speedDown + 50;
+    this.playerSpeed = speedDown + 200;
     this.target;
     this.points = 0;
     this.textScore;
@@ -37,7 +37,7 @@ class GameScene extends Phaser.Scene {
 
 
   preload() {
-    this.load.image("bg", "/public/vite.svg")
+    this.load.image("bg", "/assets/bg.png")
     this.load.image("basket", "/assets/basket.png")
     this.load.image("apple", "/assets/apple.png")
     this.load.image("money", "/assets/money.png")
@@ -62,13 +62,13 @@ class GameScene extends Phaser.Scene {
     this.target = this.physics.add
       .image(0, 0, "apple")
       .setOrigin(0, 0)
-    this.target.setMaxVelocity(0, speedDown)
+    this.target.setMaxVelocity(0, speedDown + 200)
 
     this.physics.add.overlap(this.target, this.player, this.targetHit, null, this)
 
     this.cursor = this.input.keyboard.createCursorKeys()
 
-    this.textScore = this.add.text(size.width - 120, 10, "Score: 0", {
+    this.textScore = this.add.text(sizes.width - 120, 10, "Score: 0", {
       font: "25px Arial",
       fill: "#000000",
     });
@@ -99,17 +99,17 @@ class GameScene extends Phaser.Scene {
     const { left, right } = this.cursor
 
     if (left.isDown) {
-      this.player.setVelocity(-this.playerSpeed);
+      this.player.setVelocityX(-this.playerSpeed);
 
     } else if (right.isDown) {
-      this.player.setVelocity(this.playerSpeed);
+      this.player.setVelocityX(this.playerSpeed);
     } else {
-      this.player.setVelocity(0);
+      this.player.setVelocityX(0);
     }
   }
 
   getRandomX() {
-    return Math.floor(Math.random() * 480)
+    return Math.floor(Math.random() * 400)
   }
   targetHit() {
     this.coinMusic.play();
